@@ -3,6 +3,7 @@
 @layer base {
   :root {
     --clr-theme: #4d5b9e;
+    --clr-theme-100: #d6dbf5;
     --clr-accent: #fffad1;
     --clr-highlight: #deebf8;
     --clr-shadow: #293264;
@@ -21,7 +22,7 @@
     --clr-txt--mute: hsl(from var(--clr-txt) h s calc(l + 5));
 
     --clr-success: #94d7a2;
-    --clr-reject: #f8bcbc;
+    --clr-failure: #f8bcbc;
 
     --height-fill: calc(100vh - var(--header-height) - var(--footer-height));
 
@@ -68,17 +69,21 @@
     min-height: inherit;
     position: relative;
     overflow: clip;
+    z-index: 0;
+    isolation: isolate;
 
     &::before {
       content: url("/blobs1.svg");
       position: absolute;
       inset: auto auto -100px -100px;
+      z-index: -1;
     }
 
     &::after {
       content: url("/blobs2.svg");
       position: absolute;
       inset: -140px -140px auto auto;
+      z-index: -1;
     }
   }
 
@@ -165,6 +170,12 @@
     min-height: var(--height-fill);
   }
 
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   /**
   * Typography
   */
@@ -181,7 +192,7 @@
     line-height: 1.4;
   }
 
-  .title-2 {
+  .title-3 {
     font-size: 0.75rem;
     font-weight: 700;
     line-height: 1.4;
@@ -209,6 +220,7 @@
   * Button classes
   */
   .btn {
+    cursor: pointer;
     text-align: center;
     border: none;
     border-radius: 6px;
