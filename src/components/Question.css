@@ -1,0 +1,54 @@
+@layer components {
+  .question {
+    margin-block: 1em;
+    padding-block: 1em;
+    border-bottom: 1px solid var(--clr-highlight);
+
+    & > p {
+      color: var(--clr-shadow);
+      margin-bottom: 1em;
+      max-width: 70ch;
+    }
+  }
+
+  .input-group {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+
+    input[type="radio"] {
+      appearance: none;
+    }
+  }
+
+  .option {
+    color: var(--clr-shadow);
+    border: 1px solid var(--clr-theme);
+    padding: 0.5em;
+    border-radius: 8px;
+    min-inline-size: 70px;
+    cursor: pointer;
+    text-align: center;
+
+    &:has(input:checked) {
+      background-color: var(--clr-theme-100);
+      border-color: var(--clr-theme-100);
+    }
+
+    &:has(input:disabled) {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &.success {
+      background-color: var(--clr-success);
+      border-color: var(--clr-success);
+    }
+
+    &.failure {
+      opacity: 0.5;
+      background-color: var(--clr-failure);
+      border-color: var(--clr-failure);
+    }
+  }
+}
