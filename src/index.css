@@ -66,9 +66,20 @@
 
   main {
     min-height: inherit;
-    background: url("/bg.png");
-    background-repeat: no-repeat;
-    background-position: center;
+    position: relative;
+    overflow: clip;
+
+    &::before {
+      content: url("/blobs1.svg");
+      position: absolute;
+      inset: auto auto -100px -100px;
+    }
+
+    &::after {
+      content: url("/blobs2.svg");
+      position: absolute;
+      inset: -140px -140px auto auto;
+    }
   }
 
   div#root {
