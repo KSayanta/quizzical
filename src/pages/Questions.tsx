@@ -1,3 +1,3 @@
 export default function Questions() {
-  return <h1>this is questionspage</h1>
+  return <h1>this is questionspage</h1>;
 }
