@@ -1,8 +1,14 @@
 import "./css/Quiz.css";
 import Question from "../components/Question";
-import { createContext } from "react";
+import { useState, createContext } from "react";
 
-export const quizCtx = createContext(null);
+export type validationData = {
+  name: string;
+  selected: FormDataEntryValue | null;
+  isCorrect: boolean | null;
+};
+
+export const QuizCtx = createContext<boolean>(false);
 
 export default function Quiz() {
   const data = {
@@ -68,23 +74,29 @@ export default function Quiz() {
     ],
   };
 
-  function optionsArr(incorrect: string[], correct: string): string[] {
-    const startIdx = Math.floor(Math.random() * incorrect.length);
-    return incorrect.toSpliced(startIdx, 0, correct);
+  const [isRevealed, setIsRevealed] = useState(false);
+
+  function handleSubmit(formData: FormData): void {
+    setIsRevealed(true);
+    console.log(formData);
   }
 
   return (
-    <section>
-      <form action="" className="quiz">
-        {data.results.map((elm) => (
-          <Question
-            key={elm.question}
-            question={elm.question}
-            options={optionsArr(elm.incorrect_answers, elm.correct_answer)}
-          />
-        ))}
-        <button className="btn btn--md btn--cta">Check answers</button>
-      </form>
-    </section>
+    <QuizCtx value={isRevealed}>
+      <section>
+        <form action={handleSubmit} className="quiz">
+          {data.results.map((elm) => (
+            <Question
+              key={elm.question}
+              question={elm.question}
+              correct={elm.correct_answer}
+              incorrects={elm.incorrect_answers}
+            />
+          ))}
+
+          <button className="btn btn--md btn--cta">Check answers</button>
+        </form>
+      </section>
+    </QuizCtx>
   );
 }

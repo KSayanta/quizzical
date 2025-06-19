@@ -41,6 +41,7 @@
     }
 
     &.success {
+      opacity: 1 !important;
       background-color: var(--clr-success);
       border-color: var(--clr-success);
     }
