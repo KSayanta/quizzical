@@ -1,10 +1,26 @@
 @layer components {
   .quiz {
     padding-block: 1.5em;
+    display: grid;
+    max-width: 800px;
+    place-self: center;
+  }
 
-    button[disabled] {
+  .quiz__submit {
+    margin: 2em auto;
+
+    &[disabled] {
       opacity: 0.5;
       cursor: not-allowed;
+    }
+  }
+
+  .feedback {
+    color: var(--clr-shadow);
+    display: flex;
+
+    p {
+      margin: auto;
     }
   }
 }

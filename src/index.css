@@ -139,7 +139,7 @@
     }
 
     @media (width > 550px) {
-      --side-gutter: 4.25em;
+      --side-gutter: 6em;
     }
   }
 }

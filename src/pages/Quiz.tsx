@@ -73,30 +73,55 @@ export default function Quiz() {
       },
     ],
   };
+  // TODO: fetch data from api
 
   const [isRevealed, setIsRevealed] = useState(false);
+  const [score, setScore] = useState<number | null>(null);
 
   function handleSubmit(formData: FormData): void {
     setIsRevealed(true);
-    console.log(formData);
+    const answers = [...formData.values()];
+    const correct = data.results.filter((elm, idx) =>
+      Object.is(elm.correct_answer, answers[idx])
+    );
+    setScore(correct.length);
+  }
+
+  function reset() {
+    setIsRevealed(false);
+    setScore(null);
   }
 
   return (
     <QuizCtx value={isRevealed}>
-      <section>
-        <form action={handleSubmit} className="quiz">
-          {data.results.map((elm) => (
-            <Question
-              key={elm.question}
-              question={elm.question}
-              correct={elm.correct_answer}
-              incorrects={elm.incorrect_answers}
-            />
-          ))}
+      <form action={handleSubmit} className="quiz">
+        {data.results.map((elm) => (
+          <Question
+            key={elm.question}
+            question={elm.question}
+            correct={elm.correct_answer}
+            incorrects={elm.incorrect_answers}
+          />
+        ))}
 
-          <button className="btn btn--md btn--cta">Check answers</button>
-        </form>
-      </section>
+        {score != null ? (
+          <div className="feedback">
+            <p className="title-2">
+              You scored {`${score} / ${data.results.length}`} correct answers
+            </p>
+            <button
+              onClick={reset}
+              className="btn btn--md btn--cta quiz__submit"
+            >
+              Play again
+            </button>
+          </div>
+        ) : (
+          <button className="btn btn--md btn--cta quiz__submit">
+            Check answers
+          </button>
+        )}
+      </form>
     </QuizCtx>
   );
 }
