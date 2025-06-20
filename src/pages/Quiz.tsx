@@ -3,6 +3,7 @@ import { type question } from "../types";
 import { useState, createContext, Suspense, useEffect, useRef } from "react";
 import fetchQuestions from "../api";
 import Questions from "../components/Questions";
+import Feedback from "../components/Feedback";
 
 export const QuizCtx = createContext<boolean>(false);
 
@@ -53,24 +54,7 @@ export default function Quiz() {
           fallback={<h2 className="loading-ui">Loading questions...</h2>}
         >
           {questionsPromise && <Questions questions={questionsPromise} />}
-
-          {score != null ? (
-            <div className="feedback">
-              <p className="title-2">
-                You scored {`${score} / ${maxScore}`} correct answers
-              </p>
-              <button
-                onClick={reset}
-                className="btn btn--md btn--cta quiz__submit"
-              >
-                Play again
-              </button>
-            </div>
-          ) : (
-            <button className="btn btn--md btn--cta quiz__submit">
-              Check answers
-            </button>
-          )}
+          <Feedback score={score} maxScore={maxScore} reset={reset} />
         </Suspense>
       </form>
     </QuizCtx>

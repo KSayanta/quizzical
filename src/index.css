@@ -279,10 +279,11 @@
     justify-content: center;
     align-items: center;
     gap: 1.5em;
+    color: var(--clr-shadow);
   }
 
   .fourofour__title {
-    max-width: 20ch;
+    max-width: 30ch;
     text-align: center;
   }
 }

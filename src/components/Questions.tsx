@@ -10,13 +10,7 @@ export default function Questions(props: QuestionsProp) {
   const questions = use<question[]>(props.questions);
 
   if (!questions.length) {
-    return (
-      <h1 className="loading-ui">
-        Something went wrong!
-        <br />
-        Please refresh page.
-      </h1>
-    );
+    throw { message: "Something went wrong! Please refresh page." };
   }
 
   return (

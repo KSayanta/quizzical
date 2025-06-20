@@ -1,7 +1,7 @@
 import { z } from "zod/v4";
 import { questionSchema, type question, type ApiResponse } from "./types";
 
-const url = "https://oopentdb.com/api.php?amount=5&type=multiple&encode=base64";
+const url = "https://opentdb.com/api.php?amount=5&type=multiple&encode=base64";
 
 export default async function fetchQuestions(): Promise<question[]> {
   try {
