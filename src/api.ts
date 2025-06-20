@@ -1,23 +1,9 @@
 import { z } from "zod/v4";
-const url = "https://opentdb.com/api.php?amount=5&type=multiple&encode=base64";
+import { questionSchema, type question, type ApiResponse } from "./types";
 
-const _questionSchema = z.object({
-  type: z.base64(),
-  difficulty: z.base64(),
-  category: z.base64(),
-  question: z.base64(),
-  correct_answer: z.base64(),
-  incorrect_answers: z.array(z.base64()),
-});
+const url = "https://oopentdb.com/api.php?amount=5&type=multiple&encode=base64";
 
-export type Question = z.infer<typeof _questionSchema>;
-
-type ApiResponse = {
-  response_code: number;
-  results: Question[];
-};
-
-export default async function fetchQuestions(): Promise<Question[]> {
+export default async function fetchQuestions(): Promise<question[]> {
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -31,7 +17,7 @@ export default async function fetchQuestions(): Promise<Question[]> {
       );
     }
 
-    const result = _questionSchema.array().safeParse(data.results);
+    const result = questionSchema.array().safeParse(data.results);
     if (!result.success) {
       throw new Error(`Invalid API response ${z.prettifyError(result.error)}`);
     }
@@ -46,7 +32,7 @@ export default async function fetchQuestions(): Promise<Question[]> {
 }
 
 /**
- * Demo response
+Demo response
   const data = {
     response_code: 0,
     results: [
@@ -109,4 +95,4 @@ export default async function fetchQuestions(): Promise<Question[]> {
       },
     ],
   };
- */
+*/

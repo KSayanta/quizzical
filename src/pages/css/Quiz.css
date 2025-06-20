@@ -15,6 +15,11 @@
     }
   }
 
+  .loading-ui {
+    text-align: center;
+    height: 50vh;
+  }
+
   .feedback {
     color: var(--clr-shadow);
     display: flex;
