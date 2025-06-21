@@ -1,4 +1,3 @@
-import "./Question.css";
 import { useId, useState, useContext } from "react";
 import { QuizCtx } from "../pages/Quiz";
 
@@ -48,25 +47,22 @@ export default function Question(props: QuestionProps) {
       <p className="title-2">{atob(question)}</p>
 
       <div className="input-group">
-        {options.map((opt, idx) => {
-          return (
-            <label
-              key={opt}
-              onChange={() => setSelectedIdx(idx)}
-              className={["text-2", "option", cName(idx)].join(" ")}
-            >
-              {atob(opt)}
-
-              <input
-                type="radio"
-                value={opt}
-                name={name}
-                id={`${name}-${idx}`}
-                disabled={isRevealed}
-              />
-            </label>
-          );
-        })}
+        {options.map((opt, idx) => (
+          <label
+            key={opt}
+            onChange={() => setSelectedIdx(idx)}
+            className={["text-2", "option", cName(idx)].join(" ")}
+          >
+            {atob(opt)}
+            <input
+              type="radio"
+              value={opt}
+              name={name}
+              id={`${name}-${idx}`}
+              disabled={isRevealed}
+            />
+          </label>
+        ))}
       </div>
     </div>
   );

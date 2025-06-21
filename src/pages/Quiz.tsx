@@ -40,7 +40,7 @@ export default function Quiz() {
     })();
   }
 
-  function reset() {
+  function reset(): void {
     setIsRevealed(false);
     setScore(null);
     setMaxScore(null);
