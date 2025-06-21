@@ -25,18 +25,6 @@
     --clr-failure: #f8bcbc;
 
     --height-fill: calc(100vh - var(--header-height) - var(--footer-height));
-
-    --gradient--rad: radial-gradient(
-      75% 100% at 50% 50%,
-      #272242 0%,
-      #121219 100%
-    );
-
-    --sdw-main:
-      0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
-
-    --sdw-light:
-      0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
   * {
@@ -173,6 +161,7 @@
   * Typography
   */
   .title-1 {
+    font-family: "Karla", sans-serif;
     font-size: 2rem;
     font-weight: 700;
     line-height: 1.2;
@@ -180,12 +169,14 @@
   }
 
   .title-2 {
+    font-family: "Karla", sans-serif;
     font-size: 1rem;
     font-weight: 700;
     line-height: 1.4;
   }
 
   .title-3 {
+    font-family: "Karla", sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
     line-height: 1.4;
