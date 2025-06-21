@@ -6,10 +6,6 @@ import PageNotFound from "./pages/PageNotFound";
 
 export const router = createBrowserRouter([
   {
-    path: "*",
-    Component: PageNotFound,
-  },
-  {
     path: "/quizzical",
     errorElement: <ErrorElement />,
     children: [
@@ -21,6 +17,10 @@ export const router = createBrowserRouter([
       {
         path: "quiz",
         Component: Quiz,
+      },
+      {
+        path: "*",
+        Component: PageNotFound,
       },
     ],
   },
