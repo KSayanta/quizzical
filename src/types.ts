@@ -9,15 +9,19 @@ export const questionSchema = z.object({
   incorrect_answers: z.array(z.base64()),
 });
 
-export type question = z.infer<typeof questionSchema>;
+export const randomFactSchema = z.object({
+  id: z.string().optional(),
+  text: z.string(),
+  source: z.string().optional(),
+  source_url: z.string().optional(),
+  language: z.string().optional(),
+  permalink: z.string().optional(),
+});
 
 export type ApiResponse = {
   response_code: number;
   results: question[];
 };
 
-export type validationData = {
-  name: string;
-  selected: FormDataEntryValue | null;
-  isCorrect: boolean | null;
-};
+export type question = z.infer<typeof questionSchema>;
+export type randomFact = z.infer<typeof randomFactSchema>;

@@ -1,7 +1,7 @@
 import "./css/Quiz.css";
 import { type question } from "../types";
 import { useState, createContext, Suspense, useEffect, useRef } from "react";
-import fetchQuestions from "../api";
+import { fetchQuestions } from "../api";
 import Questions from "../components/Questions";
 import Feedback from "../components/Feedback";
 
