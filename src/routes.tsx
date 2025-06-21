@@ -1,19 +1,27 @@
 import { createBrowserRouter } from "react-router";
 import Home, { loader as homeLoader } from "./pages/Home";
-import Questions from "./pages/Quiz";
+import Quiz from "./pages/Quiz";
 import ErrorElement from "./pages/ErrorElement";
 import PageNotFound from "./pages/PageNotFound";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
-    Component: Home,
-    errorElement: <PageNotFound />,
-    loader: homeLoader,
+    path: "*",
+    Component: PageNotFound,
   },
   {
-    path: "/quiz",
-    Component: Questions,
+    path: "/quizzical",
     errorElement: <ErrorElement />,
+    children: [
+      {
+        index: true,
+        Component: Home,
+        loader: homeLoader,
+      },
+      {
+        path: "quiz",
+        Component: Quiz,
+      },
+    ],
   },
 ]);
